@@ -4,7 +4,7 @@ describe ("Teste da classe Utilitarios", () => {
     let utilitarios;
 
     beforeEach(() => {
-        utilitario = new Utilitarios;
+        utilitarios = new Utilitarios;
     })
 
     test('Deve inverter String', () => {
@@ -27,7 +27,7 @@ describe ("Teste da classe Utilitarios", () => {
         expect(utilitarios.paraMinusculas('TesTE')).toBe('teste');
     })
 
-    test('Deve converter a primeira letra de uma string para minúscula', () => {
+    test('Deve converter a primeira letra de uma string para MAIÚSCULA', () => {
         expect(utilitarios.primeiraLetraMaiuscula('abcd')).toBe('Abcd');
         expect(utilitarios.primeiraLetraMaiuscula('ABCD')).toBe('ABCD');
         expect(utilitarios.primeiraLetraMaiuscula('aBCD')).toBe('ABCD');
@@ -54,7 +54,7 @@ describe ("Teste da classe Utilitarios", () => {
     test('Deve dividir 2 variaveis desde que uma delas não seja 0', () => {
         expect(utilitarios.dividir(2, 1)).toBe(2);
         expect(utilitarios.dividir(16, 2)).toBe(8);
-        expect(utilitarios.dividir(2, 0)).toBe(Error);  
+        expect(utilitarios.dividir(2, 0)).toThrow();  
     })
 
     test('Deve receber um número e dizer se é par', () => {
@@ -63,32 +63,34 @@ describe ("Teste da classe Utilitarios", () => {
     })
 
     test('Deve retornar o primeiro elemento de um array', () => {
-        expect(utilitarios.primeiroElemento([0, 1])).toBe(0);
-        expect(utilitarios.primeiroElemento([2])).toBe(2);
+        expect(utilitarios.primeiroElemento([0, 1])).toEqual(0);
+        expect(utilitarios.primeiroElemento([2])).toEqual(2);
     })
 
     test('Deve retornar o ulimo Elemento de um array', () => {
-        expect(utilitarios.ultimoElemento([0, 1])).toBe(1);
-        expect(utilitarios.ultimoElemento([1])).toBe(1);
+        expect(utilitarios.ultimoElemento([0, 1])).toEqual(1);
+        expect(utilitarios.ultimoElemento([1])).toEqual(1);
     })
 
     test('Deve retornar o tamano de um array', () => {
-        expect(utilitarios.tamanhoArray([0, 1, 2])).toBe(3);
-        expect(utilitarios.tamanhoArray([0])).toBe(1);
+        expect(utilitarios.tamanhoArray([0, 1, 2])).toEqual(3);
+        expect(utilitarios.tamanhoArray([0])).toEqual(1);
     })
 
     test('Deve ordenar um array', () => {
-        expect(utilitarios.ordenarArray([1, 4, 3, 0])).toBe([0, 1, 3, 4]);
-        expect(utilitarios.ordenarArray(['B', 'A', 'C'])).toBe(['A', 'B', 'C']);
+        expect(utilitarios.ordenarArray([1, 4, 3, 0])).toEqual([0, 1, 3, 4]);
+        expect(utilitarios.ordenarArray(['B', 'A', 'C'])).toEqual(['A', 'B', 'C']);
     })
 
     test('Deve inverter um array pela sua ordem', () => {
-        expect(utilitarios.inverterArray([1, 2, 3])).toBe([3, 2, 1]);
-        expect(utilitarios.inverterArray(['A', 'B', 'C'])).toBe(['C', 'B', 'D']); 
+        expect(utilitarios.inverterArray([1, 2, 3])).toEqual([3, 2, 1]);
+        expect(utilitarios.inverterArray(['A', 'B', 'C'])).toEqual(['C', 'B', 'D']); 
     })
 
     test('Deve gerar um numero Aleatorio multiplicado por 100 que é o máximo', () => {
-        expect(utilitarios.gerarNumeroAleatorio())
+        const numero = utilitarios.gerarNumeroAleatorio();
+        expect(numero).toBeGreaterThanOrEqual(0);
+        expect(numero).toBeLessThanOrEqual(100);
     })
 
     test('Deve validar se uma variável é um número', () => {
@@ -106,19 +108,19 @@ describe ("Teste da classe Utilitarios", () => {
     })
 
     test('Deve Juntar Array em uma string', () => {
-        expect(utilitarios.juntarArray(['maça', 'pera', 'banana'])).toBe('maça, pera, banana');
+        expect(utilitarios.juntarArray(['maça', 'pera', 'banana']), ', ').toEqual('maça, pera, banana');
     })
 
     test('Conta palavras de um input de uma variável string', () => {
-        expect(utilitarios.contarPalavras('dois')).toBe(4);
+        expect(utilitarios.contarPalavras('dois', 'tres', 'um')).toBe(3);
     })
 
     test('Deve retornar a média de numeros em um array, desde que o comprimento não seja 0', () => {
-        expect(utilitarios.mediaArray([4, 4])).toBe(4);
+        expect(utilitarios.mediaArray([4, 4])).toEqual(4);
     })
 
     test('Deve remover duplicados de um array', () => {
-        expect(utilitarios.removerDuplicados([1, 1, 2, 3])).toBe([1, 2, 3]);
+        expect(utilitarios.removerDuplicados([1, 1, 2, 3])).toEqual([1, 2, 3]);
     })
 
     test('Deve ver se uma string em variável é um Palindromo', () => {
